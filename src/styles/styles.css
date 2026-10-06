@@ -23,3 +23,25 @@ button {
   border: none;
   border-radius: 20px;
 }
+
+button:focus {
+  animation: btn 0.2s linear;
+}
+
+@keyframes btn {
+  0% {
+    transform: translateX(-20%);
+  }
+  25% {
+    transform: translateX(30%);
+  }
+  50% {
+    transform: translateX(-30%);
+  }
+  75% {
+    transform: translateX(20%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
