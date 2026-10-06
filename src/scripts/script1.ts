@@ -71,10 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(formatiert);
 
     let sauerstoff = 18.7;
+    const optimum = 20.9;
 
     console.log(
       "Die Differenz zum Optimum von 20.9% sind: " +
-        (20.9 - sauerstoff).toFixed(2) +
+        (optimum - sauerstoff).toFixed(2) +
         "%",
     );
 
