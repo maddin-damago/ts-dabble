@@ -69,5 +69,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }).format(betrag);
 
     console.log(formatiert);
+
+    let sauerstoff = 18.7;
+
+    console.log(
+      "Die Differenz zum Optimum von 20.9% sind: " +
+        (20.9 - sauerstoff).toFixed(2) +
+        "%",
+    );
+
+    if (sauerstoff > 20) {
+      console.log("Sauerstoff optimal");
+    } else if (sauerstoff <= 20 && sauerstoff >= 19) {
+      console.log("Sauerstoffversorgung beobachten");
+    } else if (sauerstoff < 19 && sauerstoff >= 17) {
+      console.log("WARNUNG: Sauerstoff niedrig");
+    } else {
+      console.log("NOTFALL!! Sauerstoffversorgunug kritisch!");
+    }
   });
 });
