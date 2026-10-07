@@ -88,5 +88,21 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       console.log("NOTFALL!! Sauerstoffversorgunug kritisch!");
     }
+
+    let tag = 3;
+
+    switch (tag) {
+      case 1:
+        console.log("Montag");
+        break;
+      case 2:
+        console.log("Dienstag");
+        break;
+      case 3:
+        console.log("Mittwoch");
+        break;
+      default:
+        console.log("Komisch, diesen Tag kenne ich nicht");
+    }
   });
 });
