@@ -20,10 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     title.value = "";
     todo.value = "";
 
-    console.log(newTodo);
-
     todos.push(newTodo);
-    console.log(todos);
 
     const li = document.createElement("li");
     li.textContent = `Title: ${newTodo.title} - Todo: ${newTodo.todo}`;
