@@ -61,6 +61,11 @@ button {
   color: white;
   text-shadow: 1px 1px 1px black;
   font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: lightgray;
 }
 
 #choices {

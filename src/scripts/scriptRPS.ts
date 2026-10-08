@@ -14,24 +14,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   scissors.addEventListener("click", () => {
     userChoice = "scissors";
-    console.log(userChoice);
     scissors.classList.toggle("picked");
     stone.classList.remove("picked");
     paper.classList.remove("picked");
+    if (userChoice) {
+      fightBtn.disabled = false;
+    }
   });
   stone.addEventListener("click", () => {
     userChoice = "stone";
-    console.log(userChoice);
     stone.classList.toggle("picked");
     scissors.classList.remove("picked");
     paper.classList.remove("picked");
+    if (userChoice) {
+      fightBtn.disabled = false;
+    }
   });
   paper.addEventListener("click", () => {
     userChoice = "paper";
-    console.log(userChoice);
     paper.classList.toggle("picked");
     stone.classList.remove("picked");
     scissors.classList.remove("picked");
+    if (userChoice) {
+      fightBtn.disabled = false;
+    }
   });
 
   fightBtn.addEventListener("click", () => {
@@ -73,6 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
       points.textContent = "0 : 0";
       userPoints = 0;
       aiPoints = 0;
+      userChoice = "";
     }, 1000);
+    fightBtn.disabled = true;
+    paper.classList.remove("picked");
+    stone.classList.remove("picked");
+    scissors.classList.remove("picked");
   }
 });
