@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const scissors = document.getElementById("scissors") as HTMLElement;
   const stone = document.getElementById("stone") as HTMLElement;
   const paper = document.getElementById("paper") as HTMLElement;
-  const fightBtn = document.getElementById("fight") as HTMLElement;
+  const fightBtn = document.getElementById("fight") as HTMLButtonElement;
   const domChoices = document.getElementById("choices") as HTMLElement;
   const choices = ["scissors", "stone", "paper"];
 
