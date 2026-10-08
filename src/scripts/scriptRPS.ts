@@ -66,6 +66,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (aiPoints === 3) {
       winningDuh("AI WON");
     }
+
+    gurko.addEventListener(
+      "animationend",
+      () => {
+        gurko.classList.remove("gurko");
+      },
+      { once: true },
+    );
+
+    veggi.addEventListener(
+      "animationend",
+      () => {
+        veggi.classList.remove("gurko");
+      },
+      { once: true },
+    );
   });
 
   function fightButton() {
@@ -97,8 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
       veggi.classList.add("gurko");
     } else {
       domChoices.textContent = "DRAW!";
-      veggi.classList.remove("gurko");
-      gurko.classList.remove("gurko");
     }
   }
 
@@ -115,7 +129,5 @@ document.addEventListener("DOMContentLoaded", () => {
     paper.classList.remove("picked");
     stone.classList.remove("picked");
     scissors.classList.remove("picked");
-    gurko.classList.remove("gurko");
-    veggi.classList.remove("gurko");
   }
 });
