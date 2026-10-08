@@ -7,6 +7,9 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+img {
+}
+
 main {
   max-width: 500px;
   width: 80vw;
@@ -28,6 +31,33 @@ main {
 .heros {
   width: 200px;
 }
+
+.gurko {
+  display: inline-block;
+  animation: move 0.3s linear forwards;
+}
+
+@keyframes move {
+  0% {
+    transform: scale(2) rotate(60deg);
+  }
+  20% {
+    transform: scale(3) rotate(120deg);
+  }
+  40% {
+    transform: scale(4) rotate(180deg);
+  }
+  60% {
+    transform: scale(5) rotate(240deg);
+  }
+  80% {
+    transform: scale(6) rotate(300deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
 #skills {
   width: 400px;
   display: flex;

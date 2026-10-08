@@ -5,12 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const paper = document.getElementById("paper") as HTMLElement;
   const fightBtn = document.getElementById("fight") as HTMLButtonElement;
   const domChoices = document.getElementById("choices") as HTMLElement;
+  const gurko = document.getElementById("gurko") as HTMLElement;
+  const veggi = document.getElementById("veggi") as HTMLElement;
+
   const choices = ["scissors", "stone", "paper"];
 
   let userPoints = 0;
   let aiPoints = 0;
 
   let userChoice = "";
+
+  gurko.classList.remove("gurko");
+  veggi.classList.remove("gurko");
 
   scissors.addEventListener("click", () => {
     userChoice = "scissors";
@@ -48,14 +54,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (userChoice === "scissors" && aiChoice === "paper") {
       userPoints++;
+      gurko.classList.add("gurko");
     } else if (userChoice === "scissors" && aiChoice === "stone") {
       aiPoints++;
+      veggi.classList.add("gurko");
     } else if (userChoice === "stone" && aiChoice === "scissors") {
       userPoints++;
+      gurko.classList.add("gurko");
     } else if (userChoice === "stone" && aiChoice === "paper") {
       aiPoints++;
     } else if (userChoice === "paper" && aiChoice === "stone") {
       userPoints++;
+      gurko.classList.add("gurko");
     } else if (userChoice === "paper" && aiChoice === "scissors") {
       aiPoints++;
     }
