@@ -15,34 +15,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let userChoice = "";
 
-  gurko.classList.remove("gurko");
-  veggi.classList.remove("gurko");
-
   scissors.addEventListener("click", () => {
     userChoice = "scissors";
+    if (scissors.classList.contains("picked")) {
+      userChoice = "";
+    }
     scissors.classList.toggle("picked");
     stone.classList.remove("picked");
     paper.classList.remove("picked");
     if (userChoice) {
       fightBtn.disabled = false;
+    } else {
+      fightBtn.disabled = true;
     }
   });
   stone.addEventListener("click", () => {
     userChoice = "stone";
+    if (stone.classList.contains("picked")) {
+      userChoice = "";
+    }
     stone.classList.toggle("picked");
     scissors.classList.remove("picked");
     paper.classList.remove("picked");
     if (userChoice) {
       fightBtn.disabled = false;
+    } else {
+      fightBtn.disabled = true;
     }
   });
   paper.addEventListener("click", () => {
     userChoice = "paper";
+    if (paper.classList.contains("picked")) {
+      userChoice = "";
+    }
     paper.classList.toggle("picked");
     stone.classList.remove("picked");
     scissors.classList.remove("picked");
     if (userChoice) {
       fightBtn.disabled = false;
+    } else {
+      fightBtn.disabled = true;
     }
   });
 
@@ -63,11 +75,17 @@ document.addEventListener("DOMContentLoaded", () => {
       gurko.classList.add("gurko");
     } else if (userChoice === "stone" && aiChoice === "paper") {
       aiPoints++;
+      veggi.classList.add("gurko");
     } else if (userChoice === "paper" && aiChoice === "stone") {
       userPoints++;
       gurko.classList.add("gurko");
     } else if (userChoice === "paper" && aiChoice === "scissors") {
       aiPoints++;
+      veggi.classList.add("gurko");
+    } else {
+      domChoices.textContent = "DRAW!";
+      veggi.classList.remove("gurko");
+      gurko.classList.remove("gurko");
     }
 
     points.textContent = `${userPoints} : ${aiPoints}`;
@@ -89,9 +107,11 @@ document.addEventListener("DOMContentLoaded", () => {
       userChoice = "";
     }, 1000);
     fightBtn.disabled = true;
+    domChoices.textContent = "";
     paper.classList.remove("picked");
     stone.classList.remove("picked");
     scissors.classList.remove("picked");
-    domChoices.textContent = "";
+    gurko.classList.remove("gurko");
+    veggi.classList.remove("gurko");
   }
 });
