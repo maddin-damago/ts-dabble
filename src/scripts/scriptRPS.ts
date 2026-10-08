@@ -46,9 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     domChoices.textContent = `User picked: ${userChoice} - AI picked: ${aiChoice}`;
 
-    console.log(userChoice);
-    console.log(aiChoice);
-
     if (userChoice === "scissors" && aiChoice === "paper") {
       userPoints++;
     } else if (userChoice === "scissors" && aiChoice === "stone") {
@@ -85,5 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     paper.classList.remove("picked");
     stone.classList.remove("picked");
     scissors.classList.remove("picked");
+    domChoices.textContent = "";
   }
 });

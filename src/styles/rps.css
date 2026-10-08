@@ -8,6 +8,7 @@
 }
 
 main {
+  max-width: 500px;
   width: 80vw;
   margin: auto;
 }
@@ -48,6 +49,7 @@ main {
 #fight-section {
   width: 80vw;
   display: flex;
+  max-width: 500px;
 }
 
 button {
@@ -70,6 +72,7 @@ button:disabled {
 
 #choices {
   width: 80vw;
+  max-width: 500px;
   height: 100px;
   display: flex;
   border: 1px solid darkcyan;
