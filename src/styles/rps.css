@@ -14,7 +14,7 @@ main {
 }
 
 #points {
-  font-size: 32px;
+  font-size: 48px;
   font-weight: bold;
   text-align: center;
 }
@@ -36,19 +36,19 @@ main {
 
 @keyframes move {
   0% {
-    transform: scale(2) rotate(60deg);
+    transform: scale(1.2) rotate(60deg);
   }
   20% {
-    transform: scale(3) rotate(120deg);
+    transform: scale(1.4) rotate(120deg);
   }
   40% {
-    transform: scale(4) rotate(180deg);
+    transform: scale(1.6) rotate(180deg);
   }
   60% {
-    transform: scale(5) rotate(240deg);
+    transform: scale(1.8) rotate(240deg);
   }
   80% {
-    transform: scale(6) rotate(300deg);
+    transform: scale(2) rotate(300deg);
   }
   100% {
     transform: scale(1) rotate(360deg);
@@ -94,8 +94,31 @@ button {
   cursor: pointer;
 }
 
+button:focus {
+  animation: btn 0.2s linear;
+}
+
+@keyframes btn {
+  0% {
+    transform: translateX(-20%);
+  }
+  25% {
+    transform: translateX(30%);
+  }
+  50% {
+    transform: translateX(-30%);
+  }
+  75% {
+    transform: translateX(20%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 button:disabled {
   background-color: lightgray;
+  cursor: not-allowed;
 }
 
 #choices {

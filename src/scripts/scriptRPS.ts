@@ -23,11 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     scissors.classList.toggle("picked");
     stone.classList.remove("picked");
     paper.classList.remove("picked");
-    if (userChoice) {
-      fightBtn.disabled = false;
-    } else {
-      fightBtn.disabled = true;
-    }
+
+    fightButton();
   });
   stone.addEventListener("click", () => {
     userChoice = "stone";
@@ -37,11 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     stone.classList.toggle("picked");
     scissors.classList.remove("picked");
     paper.classList.remove("picked");
-    if (userChoice) {
-      fightBtn.disabled = false;
-    } else {
-      fightBtn.disabled = true;
-    }
+
+    fightButton();
   });
   paper.addEventListener("click", () => {
     userChoice = "paper";
@@ -51,11 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
     paper.classList.toggle("picked");
     stone.classList.remove("picked");
     scissors.classList.remove("picked");
-    if (userChoice) {
-      fightBtn.disabled = false;
-    } else {
-      fightBtn.disabled = true;
-    }
+
+    fightButton();
   });
 
   fightBtn.addEventListener("click", () => {
@@ -64,6 +55,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     domChoices.textContent = `User picked: ${userChoice} - AI picked: ${aiChoice}`;
 
+    checkRound(aiChoice);
+
+    points.textContent = `${userPoints} : ${aiPoints}`;
+    fightBtn.blur();
+
+    if (userPoints === 3) {
+      winningDuh("PLAYER WON");
+    }
+    if (aiPoints === 3) {
+      winningDuh("AI WON");
+    }
+  });
+
+  function fightButton() {
+    if (userChoice) {
+      fightBtn.disabled = false;
+    } else {
+      fightBtn.disabled = true;
+    }
+  }
+
+  function checkRound(aiChoice: string) {
     if (userChoice === "scissors" && aiChoice === "paper") {
       userPoints++;
       gurko.classList.add("gurko");
@@ -87,16 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
       veggi.classList.remove("gurko");
       gurko.classList.remove("gurko");
     }
-
-    points.textContent = `${userPoints} : ${aiPoints}`;
-
-    if (userPoints === 3) {
-      winningDuh("PLAYER WON");
-    }
-    if (aiPoints === 3) {
-      winningDuh("AI WON");
-    }
-  });
+  }
 
   function winningDuh(whoWon: string) {
     setTimeout(() => {
