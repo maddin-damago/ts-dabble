@@ -40,11 +40,10 @@ h1,
 .filter-btn,
 .sort-btn {
   width: 150px;
-  margin: 5px;
+  margin: 5px 0;
 }
 
 input {
-  margin-left: 5px;
   margin-top: 5px;
   padding: 5px;
 }
