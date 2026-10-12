@@ -59,3 +59,39 @@ brettspiele.map((bs) => {
     li.classList.toggle("played");
   });
 });
+
+// Zählen (Häufigkeit)
+const getraenke = [
+  "Cola",
+  "Redbull",
+  "Wasser",
+  "Cola",
+  "Bier",
+  "Bier",
+  "Bier",
+  "Cola",
+  "Wasser",
+  "Sekt",
+  "Redbull",
+  "Wein",
+  "Wein",
+];
+
+const getraenkeZaehler: Record<string, number> = {};
+
+for (const getraenk of getraenke) {
+  getraenkeZaehler[getraenk] = (getraenkeZaehler[getraenk] || 0) + 1;
+}
+
+// console.log(getraenkeZaehler);
+
+const dudes = [
+  { name: "Sweet", alter: 27 },
+  { name: "Bluey", alter: 11 },
+  { name: "Bingo", alter: 8 },
+  { name: "Frau Bürgermeisterin", alter: 45 },
+];
+
+const adult = dudes.filter((d) => d.alter >= 18);
+
+// console.log(adult);

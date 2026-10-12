@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/dungeon-manager.css">
+    <title>Dungeon Manager</title>
+</head>
+
+<body>
+    <main>
+        <h1>Inventory</h1>
+        <div id="inventory-numbers">
+            <div id="total-gold">0 Gold</div>
+            <div id="total-items"></div>
+        </div>
+        <section id="buttons">
+            <section id="filter-buttons">
+                <button class="filter-btn">Waffe</button>
+                <button class="filter-btn">Trank</button>
+                <button class="filter-btn">Rüstung</button>
+                <button class="filter-btn">Schmuck</button>
+                <button class="filter-btn">Alle</button>
+            </section>
+            <section id="sort-buttons">
+                <button class="sort-btn">Wert ⬇</button>
+                <button class="sort-btn">Wert ⬆</button>
+                <button class="sort-btn">Gewicht ⬇</button>
+                <button class="sort-btn">Gewicht ⬆</button>
+            </section>
+            <input id="search-bar" type="text" placeholder="search"/>
+        </section>
+        <section id="inventory"></section>
+        <section id="totals">
+            <div id="total-value"></div>
+            <div id="total-weight"></div>
+        </section>
+    </main>
+
+    <script type="module" src="../../dist/scripts/dungeon-manager.js"></script>
+</body>
+
+</html>
