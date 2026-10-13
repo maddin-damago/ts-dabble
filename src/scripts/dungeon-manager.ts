@@ -4,7 +4,7 @@ type InventarItem = {
   typ: "waffe" | "rüstung" | "trank" | "schmuck";
   wert: number;
   gewicht: number;
-  seltenheit: "gewöhnlich" | "episch" | "legendär";
+  seltenheit: "gewöhnlich" | "rar" | "episch" | "legendär";
 };
 
 let inventar: InventarItem[] = [
@@ -40,9 +40,91 @@ let inventar: InventarItem[] = [
     gewicht: 0.2,
     seltenheit: "legendär",
   },
+  {
+    id: 5,
+    name: "Stahlschwert",
+    typ: "waffe",
+    wert: 250,
+    gewicht: 6,
+    seltenheit: "rar",
+  },
+  {
+    id: 6,
+    name: "Ausdauertrank",
+    typ: "trank",
+    wert: 50,
+    gewicht: 1,
+    seltenheit: "gewöhnlich",
+  },
+  {
+    id: 7,
+    name: "Holzschild",
+    typ: "rüstung",
+    wert: 200,
+    gewicht: 3,
+    seltenheit: "gewöhnlich",
+  },
+  {
+    id: 8,
+    name: "Lebensring",
+    typ: "schmuck",
+    wert: 600,
+    gewicht: 0.2,
+    seltenheit: "rar",
+  },
+  {
+    id: 9,
+    name: "Eisendolch",
+    typ: "waffe",
+    wert: 100,
+    gewicht: 1,
+    seltenheit: "gewöhnlich",
+  },
+  {
+    id: 10,
+    name: "Eisenhelm",
+    typ: "rüstung",
+    wert: 100,
+    gewicht: 3,
+    seltenheit: "gewöhnlich",
+  },
+  {
+    id: 11,
+    name: "Halskette Kupfer",
+    typ: "schmuck",
+    wert: 100,
+    gewicht: 0.2,
+    seltenheit: "gewöhnlich",
+  },
+  {
+    id: 12,
+    name: "Halskette Silber",
+    typ: "schmuck",
+    wert: 300,
+    gewicht: 0.2,
+    seltenheit: "rar",
+  },
+  {
+    id: 13,
+    name: "Stahlhelm",
+    typ: "rüstung",
+    wert: 200,
+    gewicht: 4,
+    seltenheit: "gewöhnlich",
+  },
+  {
+    id: 14,
+    name: "Unsichtbarkeitstrank",
+    typ: "trank",
+    wert: 800,
+    gewicht: 1,
+    seltenheit: "episch",
+  },
 ];
 
 const inventoryEL = document.getElementById("inventory") as HTMLElement;
+const prevBtn = document.getElementById("prev") as HTMLButtonElement;
+const nextBtn = document.getElementById("next") as HTMLButtonElement;
 const filterButtons = document.querySelectorAll(".filter-btn");
 const sortButtons = document.querySelectorAll(".sort-btn");
 const totalValue = document.getElementById("total-value") as HTMLElement;
@@ -55,9 +137,30 @@ playerGold.textContent = "0 Gold";
 let playerGoldAmount = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
-  render(inventar);
+  let pageStart = 0;
+  let pageEnd = 4;
+
+  render(inventar, pageStart, pageEnd);
 
   totalItems.innerText = inventar.length.toString() + " Items";
+
+  prevBtn.addEventListener("click", () => {
+    if (pageStart <= 0) {
+      return;
+    }
+    pageStart -= 4;
+    pageEnd -= 4;
+    render(inventar, pageStart, pageEnd);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (pageEnd >= inventar.length) {
+      return;
+    }
+    pageStart += 4;
+    pageEnd += 4;
+    render(inventar, pageStart, pageEnd);
+  });
 
   filterButtons.forEach((b) => {
     b.addEventListener("click", () => {
@@ -97,12 +200,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function render(arrToRender: InventarItem[]) {
+function render(
+  arrToRender: InventarItem[],
+  pageStart?: number,
+  pageEnd?: number,
+) {
   inventoryEL.innerHTML = "";
   totalValue.innerHTML = "";
   totalWeight.innerHTML = "";
 
-  arrToRender.forEach((item) => {
+  if (pageStart! <= 0) {
+    prevBtn.classList.add("disabled");
+  } else {
+    prevBtn.classList.remove("disabled");
+  }
+
+  if (pageEnd! > inventar.length - 1) {
+    nextBtn.classList.add("disabled");
+  } else {
+    nextBtn.classList.remove("disabled");
+  }
+
+  arrToRender.slice(pageStart, pageEnd).forEach((item) => {
     const div = document.createElement("div");
     const h3 = document.createElement("h3");
     const spanType = document.createElement("span");
