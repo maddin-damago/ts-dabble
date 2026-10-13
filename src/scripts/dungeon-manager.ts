@@ -213,7 +213,7 @@ function render(
     prevBtn.classList.remove("disabled");
   }
 
-  if (pageEnd > inventar.length - 1) {
+  if (pageEnd > arrToRender.length - 1) {
     nextBtn.classList.add("disabled");
   } else {
     nextBtn.classList.remove("disabled");
@@ -230,7 +230,6 @@ function render(
 
   nextBtn.addEventListener("click", () => {
     if (pageEnd >= arrToRender.length) {
-      console.log(arrToRender);
       return;
     }
     pageStart += 4;
@@ -304,7 +303,7 @@ function render(
 
   const tw = arrToRender.reduce((acc, curr) => acc + curr.gewicht, 0);
 
-  spanTotalWeight.textContent = "Gesamtgewicht: " + tw.toString();
+  spanTotalWeight.textContent = "Gesamtgewicht: " + tw.toFixed(2).toString();
   totalWeight.append(spanTotalWeight);
 
   if (tw > 20) {
