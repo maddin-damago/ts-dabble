@@ -136,31 +136,13 @@ const searchBar = document.getElementById("search-bar") as HTMLInputElement;
 playerGold.textContent = "0 Gold";
 let playerGoldAmount = 0;
 
-document.addEventListener("DOMContentLoaded", () => {
-  let pageStart = 0;
-  let pageEnd = 4;
+let pageStart = 0;
+let pageEnd = 4;
 
+document.addEventListener("DOMContentLoaded", () => {
   render(inventar, pageStart, pageEnd);
 
   totalItems.innerText = inventar.length.toString() + " Items";
-
-  prevBtn.addEventListener("click", () => {
-    if (pageStart <= 0) {
-      return;
-    }
-    pageStart -= 4;
-    pageEnd -= 4;
-    render(inventar, pageStart, pageEnd);
-  });
-
-  nextBtn.addEventListener("click", () => {
-    if (pageEnd >= inventar.length) {
-      return;
-    }
-    pageStart += 4;
-    pageEnd += 4;
-    render(inventar, pageStart, pageEnd);
-  });
 
   filterButtons.forEach((b) => {
     b.addEventListener("click", () => {
@@ -168,20 +150,36 @@ document.addEventListener("DOMContentLoaded", () => {
         b.textContent === "Alle"
           ? inventar
           : inventar.filter((i) => i.typ === b.textContent.toLowerCase());
-      render(filtered);
+      render(filtered, 0, 4);
     });
   });
 
   sortButtons.forEach((sb) => {
     sb.addEventListener("click", () => {
       if (sb.textContent === "Wert ⬇")
-        render(inventar.sort((a, b) => b.wert - a.wert));
+        render(
+          inventar.sort((a, b) => b.wert - a.wert),
+          pageStart,
+          pageEnd,
+        );
       if (sb.textContent === "Wert ⬆")
-        render(inventar.sort((a, b) => a.wert - b.wert));
+        render(
+          inventar.sort((a, b) => a.wert - b.wert),
+          pageStart,
+          pageEnd,
+        );
       if (sb.textContent === "Gewicht ⬇")
-        render(inventar.sort((a, b) => b.gewicht - a.gewicht));
+        render(
+          inventar.sort((a, b) => b.gewicht - a.gewicht),
+          pageStart,
+          pageEnd,
+        );
       if (sb.textContent === "Gewicht ⬆")
-        render(inventar.sort((a, b) => a.gewicht - b.gewicht));
+        render(
+          inventar.sort((a, b) => a.gewicht - b.gewicht),
+          pageStart,
+          pageEnd,
+        );
     });
   });
 
@@ -195,31 +193,50 @@ document.addEventListener("DOMContentLoaded", () => {
         item.seltenheit.toLowerCase().includes(searchTerm)
       );
     });
-    render(updated);
+    render(updated, pageStart, pageEnd);
     totalItems.textContent = updated.length + " Items";
   });
 });
 
 function render(
   arrToRender: InventarItem[],
-  pageStart?: number,
-  pageEnd?: number,
+  pageStart: number,
+  pageEnd: number,
 ) {
   inventoryEL.innerHTML = "";
   totalValue.innerHTML = "";
   totalWeight.innerHTML = "";
 
-  if (pageStart! <= 0) {
+  if (pageStart <= 0) {
     prevBtn.classList.add("disabled");
   } else {
     prevBtn.classList.remove("disabled");
   }
 
-  if (pageEnd! > inventar.length - 1) {
+  if (pageEnd > inventar.length - 1) {
     nextBtn.classList.add("disabled");
   } else {
     nextBtn.classList.remove("disabled");
   }
+
+  prevBtn.addEventListener("click", () => {
+    if (pageStart <= 0) {
+      return;
+    }
+    pageStart -= 4;
+    pageEnd -= 4;
+    render(arrToRender, pageStart, pageEnd);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (pageEnd >= arrToRender.length) {
+      console.log(arrToRender);
+      return;
+    }
+    pageStart += 4;
+    pageEnd += 4;
+    render(arrToRender, pageStart, pageEnd);
+  });
 
   arrToRender.slice(pageStart, pageEnd).forEach((item) => {
     const div = document.createElement("div");
@@ -252,11 +269,11 @@ function render(
     sellButton.addEventListener("click", () => {
       playerGoldAmount += item.wert;
       playerGold.textContent = playerGoldAmount.toString() + " Gold";
-      updateUI(arrToRender, item);
+      updateUI(arrToRender, item, pageStart, pageEnd);
     });
 
     usePotionButton.addEventListener("click", () => {
-      updateUI(arrToRender, item);
+      updateUI(arrToRender, item, pageStart, pageEnd);
     });
 
     div.append(h3);
@@ -295,9 +312,14 @@ function render(
   }
 }
 
-function updateUI(arrToRender: InventarItem[], item: InventarItem) {
+function updateUI(
+  arrToRender: InventarItem[],
+  item: InventarItem,
+  pageStart: number,
+  pageEnd: number,
+) {
   const updated = arrToRender.filter((i) => i.id !== item.id);
   inventar = updated;
   totalItems.textContent = updated.length.toString() + "  Items";
-  render(updated);
+  render(updated, pageStart, pageEnd);
 }
