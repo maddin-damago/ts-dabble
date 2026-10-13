@@ -13,6 +13,11 @@ body {
   background-image: url("../assets/fantasy.jpg");
   object-fit: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+main {
+  max-width: 600px;
 }
 
 button {
@@ -26,6 +31,7 @@ h1,
 }
 
 #buttons {
+  min-width: 600px;
   display: flex;
   justify-content: space-between;
   margin: 1rem auto;
@@ -54,15 +60,15 @@ input {
   padding: 5px;
   padding-left: 10px;
   width: 100%;
-  background-color: rgb(4, 136, 136);
+  /* background-color: rgb(4, 136, 136); */
   border: none;
   border-radius: 3px;
   box-shadow: 2px 2px 5px rgb(8, 46, 46);
-  color: white;
+  color: rgb(36, 35, 35);
 }
 
 input::placeholder {
-  color: white;
+  color: rgb(41, 41, 41);
 }
 
 #inventory {
@@ -74,7 +80,7 @@ input::placeholder {
 
 .item-card {
   position: relative;
-  width: 300px;
+  width: 280px;
   padding: 2rem;
   border: 2px solid darkcyan;
   border-radius: 20px;
@@ -113,7 +119,7 @@ br {
 }
 
 #totals {
-  margin: 2rem;
+  margin: 2rem 0;
   color: white;
 }
 
